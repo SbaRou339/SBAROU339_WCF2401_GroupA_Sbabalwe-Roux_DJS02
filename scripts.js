@@ -7,7 +7,7 @@ form.addEventListener("submit", (event) => {
   const { dividend, divider } = Object.fromEntries(entries);
 
   //Input validation
-  if (isNaN(dividend) || isNaN(divider)) {
+  if (!dividend.trim() || !divider.trim() || isNaN(dividend) || isNaN(divider)) {
     document.body.innerHTML = "Something critical went wrong. Please reload the page.";
     console.error("Invalid input: Non-numeric values provided");
     return;
@@ -15,14 +15,8 @@ form.addEventListener("submit", (event) => {
 
   //Error handling
   if (divider === "0") {
-    result.innerText = "Division not performed. Invalid number provided. Try again.";
+    result.innerText = "Division by zero is not allowed.";
     console.error("Invalid division: Division by zero");
-    return;
-  }
-
-  //Display result in a case of no input
-  if (dividend === "" || divider === "") {
-    result.innerText = "No calculation performed";
     return;
   }
 
