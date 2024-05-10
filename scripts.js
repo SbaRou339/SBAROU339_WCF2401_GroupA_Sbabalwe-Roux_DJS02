@@ -7,9 +7,19 @@ form.addEventListener("submit", (event) => {
   const { dividend, divider } = Object.fromEntries(entries);
 
   //Input validation
-  if (!dividend.trim() || !divider.trim() || isNaN(dividend) || isNaN(divider)) {
-    document.body.innerHTML = "Something critical went wrong. Please reload the page.";
+  if (isNaN(dividend) || isNaN(divider)) {
+    document.body.innerHTML =
+      "Something critical went wrong. Please reload the page.";
     console.error("Invalid input: Non-numeric values provided");
+    return;
+  }
+
+  if (!dividend.trim() || !divider.trim()) {
+    result.innerText =
+      "Division not performed. Both values are required in inputs. Try again";
+    console.error(
+      "Division not performed. Both values are required in inputs. Try again"
+    );
     return;
   }
 
